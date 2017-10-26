@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Latest compiled and minified jQuery -->
+    <script src="https://code.jquery.com/jquery-2.2.3.js"
+            integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+          integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous"></script>
+    <!-- Angular (minified) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular-cookies.js"></script>
+
+
+    <!--Controllers for this page/app -->
+    <script src="javascripts/controllers.js"></script>
+    <!-- Local styles -->
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+    <title>WokuAI | Let's Chat! </title>
+
+</head>
+
+<body ng-app="cs411">
+
+<div ng-controller="cs411ctrl" ng-init="initApp()">
+    <left><h1>Welcome to WokuAI!</h1></left>
+    <left><img src="/images/wokuBot.png" width="20%" height="20%"></left>
+    <br>
+
+    <div id="wokuintro">
+        <left><span class="largeText">  <i class="em em-wave"></i> Hi, I'm Woku! </span></left>
+        <br>
+        <left><span class="largeText"> Let me help you find a place </span></left>
+    </div>
+
+
+    <div id = 'form'>
+        <form class="form-inline" name="inputForm">
+            <center>
+            <div class="form-group">
+                <label class="sr-only" for="formName">Email address</label>
+                <input type="text" class="form-control" id="formName" placeholder="Enter a place" ng-model="name" required>
+            </div>
+            <button type="submit" class="btn btn-success" ng-disabled="inputForm.$invalid" ng-click="createUser()">
+                search
+            </button></center>
+        </form>
+        <br/>
+        <div ng-hide="authorized">
+            <br/>
+        </div>
+
+    </div>
+    <div class="col-xs-12" style="height:30px;"></div>
+    <div id ="buttons">
+    <br class="well col-md-6">
+        <ul class="list-group">
+            <li ng-controller="listController" class="list-group-item largeText" ng-repeat="user in users">{{user.name}}
+                <span ng-show="display"> {{user.UID}} </span>
+                <button class="btn pull-right btn-danger" ng-click="deleteUser(user._id);">
+                    <span>Delete</span>
+                </button>
+                <button class="btn pull-right btn-info" ng-click="getgeo(user.name);">
+                    <span>GeoCode!</span>
+                </button>
+
+    </div>
+            </li>
+        </ul>
+
+
+    <div id="results">
+    <h2>Here are its geo-coordinates</h2>
+        <div ng-show="showgeo">
+        <h4>GeoCode: {{flaglat}},{{flaglng}}</h4>
+
+        </div>
+        <br>
+            <div ng-show="showplcsrc">
+
+        <li ng-repeat="item in plcsrcresult"> {{item.name}} | {{item.formatted_address}} | Type: {{item.types}}</li>
+
+            </div>
+            <br>
+        <div ng-show="showres">
+        <li ng-repeat="item in resresult"> {{item.name}} | {{item.vicinity}} | Type: {{item.types}}
+            </li>
+
+        </div>
+        <br>
+        <div ng-show="showg">
+
+        <li ng-repeat="item in gresult">
+            <a href="{{item.link}}">
+                {{item.title}}</a> <br /> {{item.description}} <br>
+        </li>
+        </div>
+        <br>
+
+    </div>
+</div>
+
+</div>
+</body>
+</html>

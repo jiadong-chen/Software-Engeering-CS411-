@@ -1,0 +1,52 @@
+* {margin: 0;
+  font-family: "Lucida Console", Monaco, monospace, sans-serif;
+  padding: 8px;}
+
+body {
+  #padding: 50px;
+  #font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: lavenderblush;
+  color: darkslateblue;
+
+}
+
+a {
+  color: #00B7FF;
+}
+
+.largeText {
+  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+  float: left;
+
+}
+
+#form{
+  float: right;
+  margin: 25px 50px 75px 100px;
+  top: 0;
+  position: absolute;
+  padding-left: 15em;
+  padding-top: 8em;
+}
+
+#wokuintro{
+  float: left;
+}
+
+#logout{
+  top: 2em;
+  position: absolute;
+  right: 0;
+}
+
+#buttons{
+  float: right;
+  top: 15em;
+  position: absolute;
+  left: 25%;
+}
+
+#results{
+  top: 60%;
+  position: absolute;
+}
